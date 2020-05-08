@@ -158,7 +158,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    148 字
+                    328 字
                   </span>
                 
 
@@ -200,8 +200,9 @@
         <div class="post-content mx-auto" id="post">
           
           <div class="markdown-body">
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>&emsp;选取一种拓扑控制算法，编程实现该算法并用图形显示效果。 要求有执行算法前后拓扑对比图、链路数量统计对比。节点数目最少 50 个，随机分布，其他如通信半径、部署区域大小等自行选取。考虑到连通性问题，要求应用拓扑控制的初始网络为全连通网络（即每个节点与其他任意节点至少存 在一条链路，随机生成节点位置时可多试几次或增加节点密度）。</p>
-
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p><strong>拓扑控制（topology control）</strong><br>&emsp;是一种协调节点间各自传输范围的技术，用以 构建具有某些期望的全局特性（如连通性）的网络拓扑结构，同时减少节点的 能耗或增加网络的传输能力。<br>&emsp;选取一种拓扑控制算法(如 RNG、GG、DG、YG、MST、DRNG、 DLMST、DLSS，TopDisc 等)，编程实现该算法并用图形显示效果。 要求有执行算法前后拓扑对比图、链路数量统计对比。节点数目最少 50 个，随机分布，其他如通信半径、部署区域大小等自行选取。考虑到连通性问题，要求应用拓扑控制的初始网络为全连通网络（即每个节点与其他任意节点至少存 在一条链路，随机生成节点位置时可多试几次或增加节点密度）。<br><img src="/img/实验/WSN/GablrielGraph拓扑控制图的python图像实现/title.jpg" srcset="/img/loading.gif" alt="插入图片"></p>
+<h2 id="拓扑算法的选择与原理"><a href="#拓扑算法的选择与原理" class="headerlink" title="拓扑算法的选择与原理"></a>拓扑算法的选择与原理</h2><p><strong>1.    UDG(Unit Disk Graph)</strong><br>定义：假定网络中N个节点构成了二维平面中的节点V所有节点都以最大功率工作时所产生的拓扑成为UDG<br><img src="/img/实验/WSN/GablrielGraph拓扑控制图的python图像实现/公式1.PNG" srcset="/img/loading.gif" alt="插入图片"><br><strong>2.    GG(Gabriel Graph)</strong><br>定义：任意两个节点u和v，以边u、v为直径的圆内没有其他节点<br><img src="/img/实验/WSN/GablrielGraph拓扑控制图的python图像实现/公式2.PNG" srcset="/img/loading.gif" alt="插入图片"></p>
+<h2 id="UDG实现"><a href="#UDG实现" class="headerlink" title="UDG实现"></a>UDG实现</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><h2 id="GG实现"><a href="#GG实现" class="headerlink" title="GG实现"></a>GG实现</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><h3 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h3>
             <hr>
           </div>
           <br>
