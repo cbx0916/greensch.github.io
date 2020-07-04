@@ -202,9 +202,11 @@
           <div class="markdown-body">
             <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p><strong>拓扑控制（topology control）</strong><br>&emsp;是一种协调节点间各自传输范围的技术，用以 构建具有某些期望的全局特性（如连通性）的网络拓扑结构，同时减少节点的 能耗或增加网络的传输能力。<br>&emsp;选取一种拓扑控制算法(如 RNG、GG、DG、YG、MST、DRNG、 DLMST、DLSS，TopDisc 等)，编程实现该算法并用图形显示效果。 要求有执行算法前后拓扑对比图、链路数量统计对比。节点数目最少 50 个，随机分布，其他如通信半径、部署区域大小等自行选取。考虑到连通性问题，要求应用拓扑控制的初始网络为全连通网络（即每个节点与其他任意节点至少存 在一条链路，随机生成节点位置时可多试几次或增加节点密度）。</p>
 <p><img src="https://note.youdao.com/yws/api/personal/file/22D1B9E5C9FD401C9A9C05CC1596597D?method=download&amp;shareKey=d24dc172db07ec9b71163e6928e7bf71" srcset="/img/loading.gif" alt="插入图片"></p>
-<h2 id="拓扑算法的选择与原理"><a href="#拓扑算法的选择与原理" class="headerlink" title="拓扑算法的选择与原理"></a>拓扑算法的选择与原理</h2><p><strong>1.    UDG(Unit Disk Graph)</strong><br><strong>定义</strong>：假定网络中N个节点构成了二维平面中的节点V所有节点都以最大功率工作时所产生的拓扑成为UDG<br><strong>思路</strong>：每个节点遍历其余结点坐标，计算彼此距离(功率)，属于范围内的节点连接成边缘，将边缘加入列表</p>
-<script type="math/tex; mode=display">u,v\in V dis(u,v)\leq D_{max}(u)</script><p><strong>2.    GG(Gabriel Graph)</strong><br><strong>定义</strong>：任意两个节点u和v，以边u、v为直径的圆内没有其他节点<br><strong>思路</strong>：每个节点遍历其余结点坐标，计算彼此距离(功率)，判断是否属于范围内，且彼此连接圆内只有目标节点一个，成功便将边缘加入列表</p>
-<script type="math/tex; mode=display">w,u,v\in V dis(u,v)\leq D_{max}(u) \quad \forall w\ \neq u,v: d^2(u,v)<[d^2(u,w)+d^2(v,w)]</script><h2 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h2><p>config.py：定义了随机初始化节点函数<br>util.py：定义了针对单个节点，利用udg或gg思想，遍历其余所有节点返回生成的边缘列表有关方法<br>gg.py：gg图演示程序</p>
+<h2 id="拓扑算法的选择与原理"><a href="#拓扑算法的选择与原理" class="headerlink" title="拓扑算法的选择与原理"></a>拓扑算法的选择与原理</h2><p><strong>1.    UDG(Unit Disk Graph)</strong></p>
+<p><strong>定义：</strong>假定网络中N个节点构成了二维平面中的节点V所有节点都以最大功率工作时所产生的拓扑成为UDG<br><strong>思路：</strong>每个节点遍历其余结点坐标，计算彼此距离(功率)，属于范围内的节点连接成边缘，将边缘加入列表</p>
+<script type="math/tex; mode=display">u,v\in V dis(u,v)\leq D_{max}(u)</script><p><strong>2.    GG(Gabriel Graph)</strong></p>
+<p><strong>定义：</strong>任意两个节点u和v，以边u、v为直径的圆内没有其他节点<br><strong>思路：</strong>每个节点遍历其余结点坐标，计算彼此距离(功率)，判断是否属于范围内，且彼此连接圆内只有目标节点一个，成功便将边缘加入列表</p>
+<script type="math/tex; mode=display">w,u,v\in V dis(u,v)\leq D_{max}(u) \quad \forall w\ \neq u,v: d^2(u,v)<[d^2(u,w)+d^2(v,w)]</script><h2 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h2><p><strong>config.py：</strong>定义了随机初始化节点函数<br><strong>util.py：</strong>定义了针对单个节点，利用udg或gg思想，遍历其余所有节点返回生成的边缘列表有关方法<br><strong>gg.py：</strong>gg图演示程序</p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><h3 id="gg-py"><a href="#gg-py" class="headerlink" title="gg.py"></a>gg.py</h3><pre><code>#初始化节点
 nodes &#x3D; node_init(_num&#x3D;50,_rad_max&#x3D;300)
 # edge1&#x3D;edge_init(0,nodes[0],nodes[1])#初始化一条边
