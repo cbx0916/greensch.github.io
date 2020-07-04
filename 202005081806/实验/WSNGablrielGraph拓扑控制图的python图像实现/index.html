@@ -29,7 +29,7 @@
 
 
 
-  <link  rel="stylesheet" href="/lib/prettify/tomorrow.min.css" />
+  <link  rel="stylesheet" href="/lib/prettify/tomorrow-night.min.css" />
 
 <link  rel="stylesheet" href="/css/main.css" />
 
@@ -158,7 +158,7 @@
                   
                   <span class="post-meta">
                     <i class="far fa-chart-bar"></i>
-                    328 字
+                    349 字
                   </span>
                 
 
@@ -200,9 +200,78 @@
         <div class="post-content mx-auto" id="post">
           
           <div class="markdown-body">
-            <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p><strong>拓扑控制（topology control）</strong><br>&emsp;是一种协调节点间各自传输范围的技术，用以 构建具有某些期望的全局特性（如连通性）的网络拓扑结构，同时减少节点的 能耗或增加网络的传输能力。<br>&emsp;选取一种拓扑控制算法(如 RNG、GG、DG、YG、MST、DRNG、 DLMST、DLSS，TopDisc 等)，编程实现该算法并用图形显示效果。 要求有执行算法前后拓扑对比图、链路数量统计对比。节点数目最少 50 个，随机分布，其他如通信半径、部署区域大小等自行选取。考虑到连通性问题，要求应用拓扑控制的初始网络为全连通网络（即每个节点与其他任意节点至少存 在一条链路，随机生成节点位置时可多试几次或增加节点密度）。<br><img src="/img/实验/WSN/GablrielGraph拓扑控制图的python图像实现/title.jpg" srcset="/img/loading.gif" alt="插入图片"></p>
-<h2 id="拓扑算法的选择与原理"><a href="#拓扑算法的选择与原理" class="headerlink" title="拓扑算法的选择与原理"></a>拓扑算法的选择与原理</h2><p><strong>1.    UDG(Unit Disk Graph)</strong><br>定义：假定网络中N个节点构成了二维平面中的节点V所有节点都以最大功率工作时所产生的拓扑成为UDG<br><img src="/img/实验/WSN/GablrielGraph拓扑控制图的python图像实现/公式1.PNG" srcset="/img/loading.gif" alt="插入图片"><br><strong>2.    GG(Gabriel Graph)</strong><br>定义：任意两个节点u和v，以边u、v为直径的圆内没有其他节点<br><img src="/img/实验/WSN/GablrielGraph拓扑控制图的python图像实现/公式2.PNG" srcset="/img/loading.gif" alt="插入图片"></p>
-<h2 id="UDG实现"><a href="#UDG实现" class="headerlink" title="UDG实现"></a>UDG实现</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><h2 id="GG实现"><a href="#GG实现" class="headerlink" title="GG实现"></a>GG实现</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><h3 id="源码-1"><a href="#源码-1" class="headerlink" title="源码"></a>源码</h3>
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p><strong>拓扑控制（topology control）</strong><br>&emsp;是一种协调节点间各自传输范围的技术，用以 构建具有某些期望的全局特性（如连通性）的网络拓扑结构，同时减少节点的 能耗或增加网络的传输能力。<br>&emsp;选取一种拓扑控制算法(如 RNG、GG、DG、YG、MST、DRNG、 DLMST、DLSS，TopDisc 等)，编程实现该算法并用图形显示效果。 要求有执行算法前后拓扑对比图、链路数量统计对比。节点数目最少 50 个，随机分布，其他如通信半径、部署区域大小等自行选取。考虑到连通性问题，要求应用拓扑控制的初始网络为全连通网络（即每个节点与其他任意节点至少存 在一条链路，随机生成节点位置时可多试几次或增加节点密度）。</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/22D1B9E5C9FD401C9A9C05CC1596597D?method=download&amp;shareKey=d24dc172db07ec9b71163e6928e7bf71" srcset="/img/loading.gif" alt="插入图片"></p>
+<h2 id="拓扑算法的选择与原理"><a href="#拓扑算法的选择与原理" class="headerlink" title="拓扑算法的选择与原理"></a>拓扑算法的选择与原理</h2><p><strong>1.    UDG(Unit Disk Graph)</strong><br>定义：假定网络中N个节点构成了二维平面中的节点V所有节点都以最大功率工作时所产生的拓扑成为UDG</p>
+<script type="math/tex; mode=display">u,v\in V dis(u,v)\leq D_{max}(u)</script><p><strong>2.    GG(Gabriel Graph)</strong><br>定义：任意两个节点u和v，以边u、v为直径的圆内没有其他节点</p>
+<script type="math/tex; mode=display">w,u,v\in V dis(u,v)\leq D_{max}(u) \quad \forall w\ \neq u,v: d^2(u,v)<[d^2(u,w)+d^2(v,w)]</script><h2 id="UDG实现"><a href="#UDG实现" class="headerlink" title="UDG实现"></a>UDG实现</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>每个节点遍历其余结点坐标，计算彼此距离(功率)，属于范围内的节点连接成边缘，将边缘加入列表</p>
+<h2 id="GG实现"><a href="#GG实现" class="headerlink" title="GG实现"></a>GG实现</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>每个节点遍历其余结点坐标，计算彼此距离(功率)，判断是否属于范围内，且彼此连接圆内只有目标节点一个，成功便将边缘加入列表</p>
+<h2 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h2><p>classes.py：定义了节点和边缘两种对象<br>config.py：定义了随机初始化节点函数<br>util.py：定义了针对单个节点，利用udg或gg思想，遍历其余所有节点返回生成的边缘列表有关方法<br>demo.py：主要演示程序<br>gg.py：gg图演示程序<br>udg.py：udg图演示程序</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><h3 id="gg-py"><a href="#gg-py" class="headerlink" title="gg.py"></a>gg.py</h3><pre><code>#初始化节点
+nodes &#x3D; node_init(_num&#x3D;50,_rad_max&#x3D;300)
+# edge1&#x3D;edge_init(0,nodes[0],nodes[1])#初始化一条边
+#计算所有边（gg）
+edges&#x3D;[]
+for i in range(len(nodes)):
+    edges.append(trav2gg(nodes[i],nodes))
+#将边缘对象转化为画图所需的边
+for i in edges:
+    for j in i:
+        edgelist.append((j.node1_id,j.node2_id))
+#画点
+g_gg &#x3D; nx.Graph()
+g_gg.add_nodes_from([i for i in range(len(nodes))])
+pos &#x3D; {i:(nodes[i].x,nodes[i].y) for i in range(len(nodes))}
+nx.draw_networkx_nodes(g_gg,pos&#x3D;pos,
+    node_color &#x3D; &#39;black&#39;,node_size &#x3D; 20)
+nx.draw_networkx_edges(g_gg,pos &#x3D; pos,edgelist&#x3D;edgelist,
+    edge_color&#x3D;&#39;r&#39;,width &#x3D;0.8)
+plt.show()</code></pre>
+<h3 id="config-py"><a href="#config-py" class="headerlink" title="config.py"></a>config.py</h3><pre><code>#生成随机位置
+def position_random(_wid, _hei):
+    x &#x3D; random.randint(0, _wid)
+    y &#x3D; random.randint(0, _hei)
+    return [x, y]
+#生成指定数量节点
+def node_init(_a&#x3D;[wid, hei], _rad_max&#x3D;rad_max, _num&#x3D;node_num):
+    nodes &#x3D; []
+    positions &#x3D; []
+    for i in range(_num):
+        pos &#x3D; position_random(_a[0], _a[1])
+        if pos not in positions:
+            positions.append(pos)
+            nodes.append(e.Node(i, pos[0], pos[1], _rad_max))
+    return nodes</code></pre>
+<h3 id="util-py"><a href="#util-py" class="headerlink" title="util.py"></a>util.py</h3><pre><code>def trav2gg(_node, _node_list):
+    edge_list &#x3D; []#存放遍历后该节点的边界
+    node_list&#x3D;[]#存放遍历后的该节点的邻居节点
+    #UDG算法计算该节点的全部邻居节点以及边缘
+    for i, value in enumerate(_node_list):
+        _edge &#x3D; edge_init(&#39;edge&#39;, _node, value)
+        if _edge.length &lt; _node.r and value.id !&#x3D; _node.id:
+            edge_list.append(_edge)
+            node_list.append(value)
+    # GG算法计算该在UDG子集中的边界
+    edge_list_out&#x3D;[]#存放gg算法该节点的边界
+    for i in edge_list:
+        # 判断是否只有目标节点一个，在其与源节点两点所成的圆上
+        if is_onemin(_node,_node_list[i.node2_id],node_list):
+            edge_list_out.append(i)
+    return edge_list_out</code></pre>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><h3 id="目标范围：1000-1000，节点数量：50，最大通信功率-距离-：250"><a href="#目标范围：1000-1000，节点数量：50，最大通信功率-距离-：250" class="headerlink" title="目标范围：1000*1000，节点数量：50，最大通信功率(距离)：250"></a>目标范围：1000*1000，节点数量：50，最大通信功率(距离)：250</h3>
+<img src="https://note.youdao.com/yws/api/personal/file/CF1C9980F43A41C59752BDB836F8A7CE?method=download&shareKey=b8dba991e1fb41b51c2d76eaed103074" srcset="/img/loading.gif" width="200"><img src="https://note.youdao.com/yws/api/personal/file/5046419210C34BF491DC651301DC0780?method=download&shareKey=fd1e6dead5d79855ca0f427514c4f179" srcset="/img/loading.gif" width="200">
+
+
+<img src="https://note.youdao.com/yws/api/personal/file/CF1C9980F43A41C59752BDB836F8A7CE?method=download&shareKey=b8dba991e1fb41b51c2d76eaed103074" srcset="/img/loading.gif" class="" width="200"><img src="https://note.youdao.com/yws/api/personal/file/5046419210C34BF491DC651301DC0780?method=download&shareKey=fd1e6dead5d79855ca0f427514c4f179" srcset="/img/loading.gif" class="" width="200">
+<h3 id="目标范围：1000-1000，节点数量：100，最大通信功率-距离-：200"><a href="#目标范围：1000-1000，节点数量：100，最大通信功率-距离-：200" class="headerlink" title="目标范围：1000*1000，节点数量：100，最大通信功率(距离)：200"></a>目标范围：1000*1000，节点数量：100，最大通信功率(距离)：200</h3><p><img src="https://note.youdao.com/yws/api/personal/file/53849627B88A4BDFB889FB3390847843?method=download&amp;shareKey=447dd4faf1ed0d9b835b23c12b19599b" srcset="/img/loading.gif" alt="插入图片"><br><img src="https://note.youdao.com/yws/api/personal/file/139F559E69134EC49B5D9078A933CB51?method=download&amp;shareKey=5cd3d9230e587555291d1aa1e1d1564e" srcset="/img/loading.gif" alt="插入图片"></p>
+<h3 id="目标范围：1000-1000，节点数量：20，最大通信功率-距离-：900"><a href="#目标范围：1000-1000，节点数量：20，最大通信功率-距离-：900" class="headerlink" title="目标范围：1000*1000，节点数量：20，最大通信功率(距离)：900"></a>目标范围：1000*1000，节点数量：20，最大通信功率(距离)：900</h3><p><img src="https://note.youdao.com/yws/api/personal/file/765C8073EA0E49DDBE692B100D041226?method=download&amp;shareKey=4105687de2fad2f9301d84483150f0e9" srcset="/img/loading.gif" alt="asfd asd "></p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/EAE685E724904D8A92C6439E4E03F474?method=download&amp;shareKey=73f041cf1dde57283bfba26879d50c35" srcset="/img/loading.gif" alt="插入图片"></p>
+<p><a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Markdown数学公式语法1</a></p>
+<p><a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Markdown数学公式语法2</a></p>
+<p><a href="https://www.zybuluo.com/codeep/note/163962" target="_blank" rel="noopener">Markdown数学公式语法3</a></p>
+<p><a href="https://blog.csdn.net/qq_43401552/article/details/104805466" target="_blank" rel="noopener">Hexo+markdown之引用图片方法汇集</a></p>
+<p><a href="https://blog.csdn.net/weixin_41010198/article/details/86639739" target="_blank" rel="noopener">Markdwon中多张图片的并排显示（Mardown的灵动使用技巧）</a></p>
+
             <hr>
           </div>
           <br>
@@ -474,6 +543,32 @@
 
 
 
+  
+
+  
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
+    </script>
+
+    <script  src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
+
+  
+
 
 
   
@@ -667,6 +762,32 @@
   </script>
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
+    </script>
+
+    <script  src="https://cdn.staticfile.org/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
+
+  
 
 
 
