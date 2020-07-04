@@ -204,9 +204,9 @@
 <p><img src="https://note.youdao.com/yws/api/personal/file/22D1B9E5C9FD401C9A9C05CC1596597D?method=download&amp;shareKey=d24dc172db07ec9b71163e6928e7bf71" srcset="/img/loading.gif" alt="插入图片"></p>
 <h2 id="拓扑算法的选择与原理"><a href="#拓扑算法的选择与原理" class="headerlink" title="拓扑算法的选择与原理"></a>拓扑算法的选择与原理</h2><p><strong>1.    UDG(Unit Disk Graph)</strong><br>定义：假定网络中N个节点构成了二维平面中的节点V所有节点都以最大功率工作时所产生的拓扑成为UDG</p>
 <script type="math/tex; mode=display">u,v\in V dis(u,v)\leq D_{max}(u)</script><p><strong>2.    GG(Gabriel Graph)</strong><br>定义：任意两个节点u和v，以边u、v为直径的圆内没有其他节点</p>
-<script type="math/tex; mode=display">w,u,v\in V dis(u,v)\leq D_{max}(u) \quad \forall w\ \neq u,v: d^2(u,v)<[d^2(u,w)+d^2(v,w)]</script><h2 id="UDG实现"><a href="#UDG实现" class="headerlink" title="UDG实现"></a>UDG实现</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>每个节点遍历其余结点坐标，计算彼此距离(功率)，属于范围内的节点连接成边缘，将边缘加入列表</p>
-<h2 id="GG实现"><a href="#GG实现" class="headerlink" title="GG实现"></a>GG实现</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>每个节点遍历其余结点坐标，计算彼此距离(功率)，判断是否属于范围内，且彼此连接圆内只有目标节点一个，成功便将边缘加入列表</p>
-<h2 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h2><p>classes.py：定义了节点和边缘两种对象<br>config.py：定义了随机初始化节点函数<br>util.py：定义了针对单个节点，利用udg或gg思想，遍历其余所有节点返回生成的边缘列表有关方法<br>demo.py：主要演示程序<br>gg.py：gg图演示程序<br>udg.py：udg图演示程序</p>
+<script type="math/tex; mode=display">w,u,v\in V dis(u,v)\leq D_{max}(u) \quad \forall w\ \neq u,v: d^2(u,v)<[d^2(u,w)+d^2(v,w)]</script><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>每个节点遍历其余结点坐标，计算彼此距离(功率)，属于范围内的节点连接成边缘，将边缘加入列表</p>
+<h2 id="GG实现"><a href="#GG实现" class="headerlink" title="GG实现"></a>GG实现</h2><h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>每个节点遍历其余结点坐标，计算彼此距离(功率)，判断是否属于范围内，且彼此连接圆内只有目标节点一个，成功便将边缘加入列表</p>
+<h2 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h2><p>config.py：定义了随机初始化节点函数<br>util.py：定义了针对单个节点，利用udg或gg思想，遍历其余所有节点返回生成的边缘列表有关方法<br>gg.py：gg图演示程序</p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><h3 id="gg-py"><a href="#gg-py" class="headerlink" title="gg.py"></a>gg.py</h3><pre><code>#初始化节点
 nodes &#x3D; node_init(_num&#x3D;50,_rad_max&#x3D;300)
 # edge1&#x3D;edge_init(0,nodes[0],nodes[1])#初始化一条边
@@ -259,13 +259,77 @@ def node_init(_a&#x3D;[wid, hei], _rad_max&#x3D;rad_max, _num&#x3D;node_num):
             edge_list_out.append(i)
     return edge_list_out</code></pre>
 <h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><h3 id="目标范围：1000-1000，节点数量：50，最大通信功率-距离-：250"><a href="#目标范围：1000-1000，节点数量：50，最大通信功率-距离-：250" class="headerlink" title="目标范围：1000*1000，节点数量：50，最大通信功率(距离)：250"></a>目标范围：1000*1000，节点数量：50，最大通信功率(距离)：250</h3>
-<img src="https://note.youdao.com/yws/api/personal/file/CF1C9980F43A41C59752BDB836F8A7CE?method=download&shareKey=b8dba991e1fb41b51c2d76eaed103074" srcset="/img/loading.gif" width="200"><img src="https://note.youdao.com/yws/api/personal/file/5046419210C34BF491DC651301DC0780?method=download&shareKey=fd1e6dead5d79855ca0f427514c4f179" srcset="/img/loading.gif" width="200">
+
+<style>
+.box{width:300px; text-align:center; font-szie:18px;}
+.box img {width:100%;}
+</style>
+
+<table class="box">
+  <tr>
+    <td>
+      <div class="box">
+      <img src="https://note.youdao.com/yws/api/personal/file/CF1C9980F43A41C59752BDB836F8A7CE?method=download&shareKey=b8dba991e1fb41b51c2d76eaed103074" srcset="/img/loading.gif" >
+      GG
+      </div>
+    </td>
+    <td>
+      <div class="box">
+      <img src="https://note.youdao.com/yws/api/personal/file/CF1C9980F43A41C59752BDB836F8A7CE?method=download&shareKey=b8dba991e1fb41b51c2d76eaed103074" srcset="/img/loading.gif">
+      UDG
+      </div>
+    </td>
+  </tr>
+</table>
 
 
-<img src="https://note.youdao.com/yws/api/personal/file/CF1C9980F43A41C59752BDB836F8A7CE?method=download&shareKey=b8dba991e1fb41b51c2d76eaed103074" srcset="/img/loading.gif" class="" width="200"><img src="https://note.youdao.com/yws/api/personal/file/5046419210C34BF491DC651301DC0780?method=download&shareKey=fd1e6dead5d79855ca0f427514c4f179" srcset="/img/loading.gif" class="" width="200">
-<h3 id="目标范围：1000-1000，节点数量：100，最大通信功率-距离-：200"><a href="#目标范围：1000-1000，节点数量：100，最大通信功率-距离-：200" class="headerlink" title="目标范围：1000*1000，节点数量：100，最大通信功率(距离)：200"></a>目标范围：1000*1000，节点数量：100，最大通信功率(距离)：200</h3><p><img src="https://note.youdao.com/yws/api/personal/file/53849627B88A4BDFB889FB3390847843?method=download&amp;shareKey=447dd4faf1ed0d9b835b23c12b19599b" srcset="/img/loading.gif" alt="插入图片"><br><img src="https://note.youdao.com/yws/api/personal/file/139F559E69134EC49B5D9078A933CB51?method=download&amp;shareKey=5cd3d9230e587555291d1aa1e1d1564e" srcset="/img/loading.gif" alt="插入图片"></p>
-<h3 id="目标范围：1000-1000，节点数量：20，最大通信功率-距离-：900"><a href="#目标范围：1000-1000，节点数量：20，最大通信功率-距离-：900" class="headerlink" title="目标范围：1000*1000，节点数量：20，最大通信功率(距离)：900"></a>目标范围：1000*1000，节点数量：20，最大通信功率(距离)：900</h3><p><img src="https://note.youdao.com/yws/api/personal/file/765C8073EA0E49DDBE692B100D041226?method=download&amp;shareKey=4105687de2fad2f9301d84483150f0e9" srcset="/img/loading.gif" alt="asfd asd "></p>
-<p><img src="https://note.youdao.com/yws/api/personal/file/EAE685E724904D8A92C6439E4E03F474?method=download&amp;shareKey=73f041cf1dde57283bfba26879d50c35" srcset="/img/loading.gif" alt="插入图片"></p>
+<h3 id="目标范围：1000-1000，节点数量：100，最大通信功率-距离-：200"><a href="#目标范围：1000-1000，节点数量：100，最大通信功率-距离-：200" class="headerlink" title="目标范围：1000*1000，节点数量：100，最大通信功率(距离)：200"></a>目标范围：1000*1000，节点数量：100，最大通信功率(距离)：200</h3>
+
+<style>
+.box{width:300px; text-align:center; font-szie:26px;}
+.box img {width:100%;}
+</style>
+
+<table class="box">
+  <tr>
+    <td>
+      <div class="box">
+      <img src="https://note.youdao.com/yws/api/personal/file/53849627B88A4BDFB889FB3390847843?method=download&shareKey=447dd4faf1ed0d9b835b23c12b19599b" srcset="/img/loading.gif" >
+      GG
+      </div>
+    </td>
+    <td>
+      <div class="box">
+      <img src="https://note.youdao.com/yws/api/personal/file/139F559E69134EC49B5D9078A933CB51?method=download&shareKey=5cd3d9230e587555291d1aa1e1d1564e" srcset="/img/loading.gif">
+      UDG
+      </div>
+    </td>
+  </tr>
+</table>
+
+
+<h3 id="目标范围：1000-1000，节点数量：20，最大通信功率-距离-：900"><a href="#目标范围：1000-1000，节点数量：20，最大通信功率-距离-：900" class="headerlink" title="目标范围：1000*1000，节点数量：20，最大通信功率(距离)：900"></a>目标范围：1000*1000，节点数量：20，最大通信功率(距离)：900</h3><style>
+.box{width:300px; text-align:center; font-szie:18px;}
+.box img {width:100%;}
+</style>
+
+<table class="box">
+  <tr>
+    <td>
+      <div class="box">
+      <img src="https://note.youdao.com/yws/api/personal/file/765C8073EA0E49DDBE692B100D041226?method=download&shareKey=4105687de2fad2f9301d84483150f0e9" srcset="/img/loading.gif" >
+      GG
+      </div>
+    </td>
+    <td>
+      <div class="box">
+      <img src="https://note.youdao.com/yws/api/personal/file/EAE685E724904D8A92C6439E4E03F474?method=download&shareKey=73f041cf1dde57283bfba26879d50c35" srcset="/img/loading.gif">
+      UDG
+      </div>
+    </td>
+  </tr>
+</table>
+
 <p><a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Markdown数学公式语法1</a></p>
 <p><a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Markdown数学公式语法2</a></p>
 <p><a href="https://www.zybuluo.com/codeep/note/163962" target="_blank" rel="noopener">Markdown数学公式语法3</a></p>
